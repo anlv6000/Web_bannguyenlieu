@@ -39,6 +39,7 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import SettingsIcon from "@mui/icons-material/Settings";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer"; // Icon cho Voucher
+import CategoryIcon from "@mui/icons-material/Category"; // Icon cho Categories
 
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
@@ -235,7 +236,9 @@ export default function AdminDashboardLayout() {
   const handleOnclickVouchers = () => {
     navigate("/admin/manage-vouchers");
   };
-
+ const handleOnclickCategories = () => {
+    navigate("/admin/manage-categories");
+  };
   const handleOnclickSignout = async () => {
     await AuthenService.logout();
     dispatch(resetUserInfo());
@@ -433,7 +436,20 @@ export default function AdminDashboardLayout() {
                   }}
                 />
               </ListItemButton>
-
+<ListItemButton
+                onClick={handleOnclickCategories}
+                selected={currentPath === "/admin/manage-categories"}
+              >
+                <ListItemIcon sx={{ color: "primary.contrastText" }}>
+                  <CategoryIcon />
+                </ListItemIcon>
+                <ListItemText
+                  primary="Manage Categories"
+                  primaryTypographyProps={{
+                    fontWeight: currentPath === "/admin/manage-categories" ? 'bold' : 'normal'
+                  }}
+                />
+              </ListItemButton>
             </React.Fragment>
             <Divider sx={{ my: 1, borderColor: "rgba(255,255,255,0.1)" }} />
             <React.Fragment>

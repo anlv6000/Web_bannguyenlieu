@@ -33,7 +33,13 @@ router.use("/buyers", buyerRouter);
 router.use("/chat", chatRouter);
 router.use("/images", authMiddleware, imageRoutes);
 router.get('/products', productController.listAllProducts);
+// Category routes
+router.get('/categories/search', categoryController.searchCategories);
 router.get('/categories', categoryController.listAllCategories);
+router.get('/categories/:id', categoryController.getCategoryById);
+router.post('/categories', authMiddleware, categoryController.createCategory);
+router.put('/categories/:id', authMiddleware, categoryController.updateCategory);
+router.delete('/categories/:id', authMiddleware, categoryController.deleteCategory);
 // Public route for product reviews
 router.get('/products/:productId/reviews', reviewController.getProductReviews);
 
